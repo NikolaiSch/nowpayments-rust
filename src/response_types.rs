@@ -54,3 +54,26 @@ pub struct MerchantCurrencies {
     #[serde(rename = "selectedCurrencies")]
     pub selected_currencies: Vec<String>,
 }
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+pub struct MinimumPaymentAmount {
+    pub min_amount: f64,
+    pub currency_from: String,
+    pub currency_to: String,
+    pub fiat_equivalent: f64,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+pub struct Invoice {
+    order_id: Option<String>,
+    order_description: String,
+    price_amount: String,
+    price_currency: String,
+    pay_currency: Option<String>,
+    ipn_callback_url: Option<String>,
+    invoice_url: Option<String>,
+    success_url: Option<String>,
+    cancel_url: Option<String>,
+    created_at: Option<String>,
+    updated_at: Option<String>,
+}

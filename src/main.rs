@@ -1,4 +1,5 @@
 use nowpayments_rust::now_payments::UnverifiedNowPayments;
+use nowpayments_rust::request_types::CreateInvoice;
 
 #[tokio::main]
 async fn main() {
@@ -7,10 +8,13 @@ async fn main() {
     println!("{:?}", api_status);
 
     let verified_now_payments = unverified_now_payments
-        .verify("KM28NFV-5EEMD1X-N57XZH8-PCG48HC".to_string())
+        .verify("APIKEY".to_string())
         .await
         .unwrap();
 
-    let currencies = verified_now_payments.get_merchant_currencies().await;
-    println!("{:?}", currencies);
+    let i = verified_now_payments
+        .create_invoice(CreateInvoice::default())
+        .await
+        .unwrap();
+    println!("{:?}", i);
 }
